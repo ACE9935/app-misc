@@ -9,10 +9,9 @@ import MiscLoader from '@/components/MiscLoader';
 
 function ProfileContainer() {
     const {data}=useSession()
-    const userInfos=data?.user.infos.info
     
     if(!data) return <MiscLoader/>
-
+    const userInfos=data?.user.infos.info
     return ( <div className="p-3">
      <div className="bg-red-200 rounded-2xl p-3 py-6 flex-col sm:flex-row flex gap-8 items-center">
       <img src={data?.user.image} className='w-[10rem] shadow-2xl rounded-full'/>
