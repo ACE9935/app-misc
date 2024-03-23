@@ -1,7 +1,5 @@
-import { authOptions } from "@/app/api/authOptions";
+
 import SignInTab from "@/components/signIn/SignInTab";
-import { getServerSession } from "next-auth"
-import { redirect } from "next/navigation";
 
 export async function generateMetadata(
     { params, searchParams }: {
