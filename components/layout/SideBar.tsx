@@ -61,10 +61,11 @@ const {data}=useSession()
         <Album/>
       </ListItemIcon><ListItemText primary="Artists" /></ListItemButton>
       </Link>
+      <Link href={"/infos-and-help"}>
     <ListItemButton>
     <ListItemIcon>
         <Info/>
-      </ListItemIcon><ListItemText primary="Info & Help" /></ListItemButton>
+      </ListItemIcon><ListItemText primary="Info & Help" /></ListItemButton></Link>
       </div>
   </StyledSideBar></Box>
 
