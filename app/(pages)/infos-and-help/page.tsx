@@ -1,4 +1,5 @@
 import MiscTitle from "@/components/MiscTitle";
+import { Instagram } from "@mui/icons-material";
 
 function InfosPage() {
     return ( 
@@ -6,16 +7,18 @@ function InfosPage() {
          <section className="flex flex-col gap-2">
             <MiscTitle>About Us:</MiscTitle>
             <div>
-            Welcome to Misc, where we believe in the power of music to inspire, connect, and enrich lives. Our mission is to provide music lovers around the world with a seamless and immersive listening experience, tailored to their unique tastes and preferences. Whether you're discovering new artists, creating playlists for every mood, or connecting with fellow music enthusiasts, our app is designed to be your ultimate companion on your musical journey.
+            Welcome to Misc, I made this project for fun, the signin method using email adress is not working unfortunatly
             </div>
          </section>
 
          <section className="flex flex-col gap-2">
             <MiscTitle>Contact Information:</MiscTitle>
-            <div>
-            Feel free to contact me in my email adress:<br/>
-            <ul>
-            <li className="text-main underline">anaselmouden99@gmail.com</li>
+            <div className="flex flex-col gap-3">
+            Feel free to contact me anytime:<br/>
+            <ul className="flex flex-col gap-2">
+            <li><p className="text-lg font-semibold inline-block">Portfolio:</p> <a className="text-main underline" target="_blank" href="https://anas-elmouden-portfolio.vercel.app/">anas-elmouden-portfolio.vercel.app</a></li>
+            <li><p className="text-lg font-semibold inline-block">Email:</p> <span className="text-main underline">anaselmouden99@gmail.com</span></li>
+            <li className="text-main"><a target="_blank" href="https://www.instagram.com/anas_elmouden12/"><Instagram sx={{fontSize:30}}/>  <span className="underline">@anas_elmouden12</span></a></li>
             </ul>
             </div>
          </section>
