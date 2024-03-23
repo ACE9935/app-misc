@@ -13,7 +13,10 @@ function InfosPage() {
          <section className="flex flex-col gap-2">
             <MiscTitle>Contact Information:</MiscTitle>
             <div>
-            Welcome to Misc, where we believe in the power of music to inspire, connect, and enrich lives. Our mission is to provide music lovers around the world with a seamless and immersive listening experience, tailored to their unique tastes and preferences. Whether you're discovering new artists, creating playlists for every mood, or connecting with fellow music enthusiasts, our app is designed to be your ultimate companion on your musical journey.
+            Feel free to contact me in my email adress:<br/>
+            <ul>
+            <li className="text-main underline">anaselmouden99@gmail.com</li>
+            </ul>
             </div>
          </section>
         </main>
