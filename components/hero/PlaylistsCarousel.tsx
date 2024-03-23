@@ -64,6 +64,7 @@ function PlaylistsCarousel() {
         <IconButton onClick={()=>swiperRef?.slideNext()}><ArrowForward/></IconButton>
     </div>
     </div>
+    
     <StyledSwiper
     autoplay={{
         delay: 2500,
