@@ -8,12 +8,15 @@ import { IconButton, Button } from '@mui/material';
 import EmailForm from './EmailForm';
 import { useAppDispatch, useAppSelector } from '@/app-state/app-hooks';
 import { close, setForm, setMail, setVerify } from '@/app-state/model-state';
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
+import { signOut, useSession } from 'next-auth/react';
 
 function SignInTab({page}:{page?:boolean}) {
   const model=useAppSelector(state=>state.model)
   const dispatch=useAppDispatch()
   const router=useRouter()
+  const {data,status}=useSession()
+  if(page && data) redirect('/')
     return ( 
         <>
         {!model.showForm?<div className='p-4 xs:p-6 pt-4 sm:px-20 bg-white w-full flex flex-col gap-12 pb-14'>
