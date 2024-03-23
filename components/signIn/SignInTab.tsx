@@ -23,7 +23,7 @@ function SignInTab({page}:{page?:boolean}) {
         </div>
         
         <div className='flex flex-col gap-3 pt-3'>
-        <SignInBtn onClick={()=>signIn('google')} text="Sign in with Google" img="/google.png"/>
+        <SignInBtn onClick={()=>page?signIn('google',{callbackUrl:'/'}):signIn('google')} text="Sign in with Google" img="/google.png"/>
         <SignInBtn onClick={()=>dispatch(setForm(true))} text="Sign in with email" img="/email.png"/>
         </div>
       </div>

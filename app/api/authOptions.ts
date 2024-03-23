@@ -33,7 +33,7 @@ async function refreshAccessToken(tokenObject:any) {
       strategy: "jwt",
     },
     pages:{
-      signIn:"/signin-misc"
+      signIn:"/signin"
     },
     providers: [
       GoogleProvider({
