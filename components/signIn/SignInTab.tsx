@@ -17,6 +17,7 @@ function SignInTab({page}:{page?:boolean}) {
   const router=useRouter()
   const {data,status}=useSession()
   if(page && data) redirect('/')
+  if(page && status=='loading') return <></>
     return ( 
         <>
         {!model.showForm?<div className='p-4 xs:p-6 pt-4 sm:px-20 bg-white w-full flex flex-col gap-12 pb-14'>
