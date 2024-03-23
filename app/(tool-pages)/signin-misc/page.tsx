@@ -1,5 +1,7 @@
-
+import { authOptions } from "@/app/api/authOptions";
 import SignInTab from "@/components/signIn/SignInTab";
+import { getServerSession } from "next-auth"
+import { redirect } from "next/navigation";
 
 export async function generateMetadata(
     { params, searchParams }: {
@@ -17,7 +19,8 @@ export async function generateMetadata(
   }
 
 async function SigninPage() {
-  
+    const session = await getServerSession(authOptions)
+    if(session) redirect("/")
     return (
         <>
         <div className="p-3 w-full max-w-[40rem] mix-blend-normal relative z-10">
