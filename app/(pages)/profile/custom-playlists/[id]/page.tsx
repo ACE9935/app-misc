@@ -20,7 +20,7 @@ function PlaylistIdPage({
   
   if (!playlist) {
     // Redirect to 404 page if playlist doesn't exist
-    router.replace('/404');
+    router.replace('/');
     return null; // Return null to prevent rendering anything else
   }
  

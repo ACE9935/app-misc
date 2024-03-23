@@ -7,7 +7,7 @@ import { useToast } from "@chakra-ui/react";
 import { CloseOutlined, Delete } from "@mui/icons-material";
 import { Dialog, IconButton } from "@mui/material";
 import { useMutation } from "@tanstack/react-query";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import SignInBtnBasicFilled from "@/components/signIn/SignInBtnBasicFilled";
 import Loader from "@/components/Loader";
 
@@ -45,7 +45,7 @@ function DeletePlaylistModel() {
     const router=useRouter()
     const { mutate,isPending } = useMutation({mutationFn:deletePlaylist,onSuccess:()=> {
       
-     redirect('/')
+     router.push('/')
      dispatch(closeDeleteTab())
       toast({
       position:'bottom-left',
