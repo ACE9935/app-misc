@@ -1,0 +1,12 @@
+@media (max-width: 768px) {
+    .child:nth-child(n+6) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .child:nth-child(n+5) {
+      display: none;
+    }
+  }
+
