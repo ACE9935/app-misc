@@ -11,7 +11,7 @@ export interface ISong {
   top?:boolean
   album?:string|null
   genre?:string[]| null
-  indexOfSong:string|Number;
+  indexOfSong?:string|Number;
   popular?:boolean
 }
 
@@ -27,7 +27,7 @@ const songSchema = new Schema<ISong>({
   popular: { type: Boolean,default:false },
   album: { type: String },
   genre:{type:[String]},
-  indexOfSong: { type: String||Number, required: true }
+  indexOfSong: { type: String||Number}
 });
 
 interface userInfo {

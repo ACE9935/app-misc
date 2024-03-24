@@ -14,7 +14,7 @@ export async function GET(
   const limit=9
   try{
     database()
-    let songs=await Song.find({popular:true}).limit(limit).skip((Number(page)-1)*limit)
+    let songs=await Song.find({popular:true}).sort({ title: 1 }).limit(limit).skip((Number(page)-1)*limit)
     const count = await Song.countDocuments({popular:true});
     return Response.json({ data: songs,pageLength:Math.ceil(count/limit)})
   }

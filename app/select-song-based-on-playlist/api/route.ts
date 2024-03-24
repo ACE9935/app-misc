@@ -14,7 +14,7 @@ export async function POST(
     if(Number(index)+1>count) index="0"
     if(Number(index)<0) index=String(count-1)
 
-    let songs=await Song.find({genre: { $in: genres }},'-_id').skip(Number(index)).limit(1)
+    let songs=await Song.find({genre: { $in: genres }},'-_id').sort({ title: 1 }).skip(Number(index)).limit(1)
     return Response.json({ data: songs,index:Number(index),playlistGenre:genres})
   }
   catch (e:unknown){

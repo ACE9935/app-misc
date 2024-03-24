@@ -12,7 +12,7 @@ export async function POST(
   const limit=5
   try{
     database()
-    let songs=await Song.find({genre: { $in: genres }},{_id:0}).limit(limit).skip((Number(page)-1)*limit)
+    let songs=await Song.find({genre: { $in: genres }},{_id:0}).sort({ title: 1 }).limit(limit).skip((Number(page)-1)*limit)
     const plainObjects = songs.map(doc => doc.toObject());
     const count = await Song.countDocuments({genre: { $in: genres }});
     return Response.json({ data: plainObjects,pageLength:Math.ceil(count/limit)})
