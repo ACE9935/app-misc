@@ -7,6 +7,8 @@ import ArtistsPagination from "../../components/ArtistsPagination";
 
 export type ArtistsTab= {genre:Genre,artists:ArtistInterface[]}
 
+export const revalidate = 0;
+export const dynamic='force-dynamic'
 const limit=20
 
 export async function generateMetadata(
