@@ -20,8 +20,7 @@ export async function GET(
           ]
         }},
         { $sort: { popular: -1 } },
-        { $sample: { size: 5 } }, // Sample 5 random documents
-        { $project: { _id: 0 } } // Exclude the _id field from the result
+        { $sample: { size: 5 } }, // Sample 5 random documents Exclude the _id field from the result
       ]);
   
       // Retrieve artists randomly

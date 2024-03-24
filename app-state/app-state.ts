@@ -18,6 +18,7 @@ export interface SongState extends ISong {
 
 // Define the initial state using that type
 const initialState: SongState = {
+  _id:"",
   playing: false,
   customList:[],
   playlisGenres:[],
@@ -38,9 +39,9 @@ const initialState: SongState = {
 
 export const nextSong = createAsyncThunk(
   'next/song',
-  async function ({ indexS, genre }: { indexS: number; genre: string }, { rejectWithValue }) {
+  async function ({ indexS, genre,action }: { indexS: string; genre: string,action:string }, { rejectWithValue }) {
     try {
-      const res = await fetch(`/select-song/api?index=${indexS}&genre=${genre}`);
+      const res = await fetch(`/select-song/api?id=${indexS}&genre=${genre}&action=${action}`);
 
       if (!res.ok) {
         // Handle non-2xx responses here

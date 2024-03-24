@@ -1,6 +1,7 @@
 import mongoose, { Schema, model } from 'mongoose';
 // 1. Create an interface representing a document in MongoDB.
 export interface ISong {
+  _id:string;
   title: string | null;
   artist:string | null;
   artistName?:string|null

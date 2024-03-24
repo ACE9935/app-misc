@@ -43,11 +43,11 @@ function SongPlayer() {
         dispatch(pause())
       }}
       showSkipControls={true}
-      onEnded={()=> song.playingCustom?dispatch(playCustom({songs:song.customList,index:song.indexOfCustom!+1})):song.playingPlaylist?dispatch(nextSongBasedOnPlaylist({indexS:(song.indexOfSongInAlbum!+1),genre:song.playlisGenres!})):song.playingArtistAlbum?dispatch(nextSongBasedOnArtist({indexS:(song.indexOfSongInAlbum!+1),artist:song.artistName!})):dispatch(nextSong({indexS:Number(song.indexOfSong)+1,genre:song.genre?.[0] ?? 'defaultGenre'}))}
+      onEnded={()=> song.playingCustom?dispatch(playCustom({songs:song.customList,index:song.indexOfCustom!+1})):song.playingPlaylist?dispatch(nextSongBasedOnPlaylist({indexS:(song.indexOfSongInAlbum!+1),genre:song.playlisGenres!})):song.playingArtistAlbum?dispatch(nextSongBasedOnArtist({indexS:(song.indexOfSongInAlbum!+1),artist:song.artistName!})):dispatch(nextSong({indexS:song._id,genre:song.genre?.[0] ?? 'defaultGenre',action:"next"}))}
       onClickNext={()=>
-        song.playingCustom?dispatch(playCustom({songs:song.customList,index:song.indexOfCustom!+1})):song.playingPlaylist?dispatch(nextSongBasedOnPlaylist({indexS:(song.indexOfSongInAlbum!+1),genre:song.playlisGenres!})):song.playingArtistAlbum?dispatch(nextSongBasedOnArtist({indexS:(song.indexOfSongInAlbum!+1),artist:song.artistName!})):dispatch(nextSong({indexS:Number(song.indexOfSong)+1,genre:song.genre?.[0] ?? 'defaultGenre'}))}
+        song.playingCustom?dispatch(playCustom({songs:song.customList,index:song.indexOfCustom!+1})):song.playingPlaylist?dispatch(nextSongBasedOnPlaylist({indexS:(song.indexOfSongInAlbum!+1),genre:song.playlisGenres!})):song.playingArtistAlbum?dispatch(nextSongBasedOnArtist({indexS:(song.indexOfSongInAlbum!+1),artist:song.artistName!})):dispatch(nextSong({indexS:song._id,genre:song.genre?.[0] ?? 'defaultGenre',action:"next"}))}
       onClickPrevious={()=>
-        song.playingCustom?dispatch(playCustom({songs:song.customList,index:song.indexOfCustom!-1})):song.playingPlaylist?dispatch(nextSongBasedOnPlaylist({indexS:(song.indexOfSongInAlbum!-1),genre:song.playlisGenres!})):song.playingArtistAlbum?dispatch(nextSongBasedOnArtist({indexS:(song.indexOfSongInAlbum!-1),artist:song.artistName!})): dispatch(nextSong({indexS:Number(song.indexOfSong)-1,genre:song.genre?.[0] ?? 'defaultGenre'}))}
+        song.playingCustom?dispatch(playCustom({songs:song.customList,index:song.indexOfCustom!-1})):song.playingPlaylist?dispatch(nextSongBasedOnPlaylist({indexS:(song.indexOfSongInAlbum!-1),genre:song.playlisGenres!})):song.playingArtistAlbum?dispatch(nextSongBasedOnArtist({indexS:(song.indexOfSongInAlbum!-1),artist:song.artistName!})): dispatch(nextSong({indexS:song._id,genre:song.genre?.[0] ?? 'defaultGenre',action:"prev"}))}
     />
      );
 }

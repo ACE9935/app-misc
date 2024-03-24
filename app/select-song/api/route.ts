@@ -10,16 +10,25 @@ export async function GET(
   req:Request,
 ) {
   const { searchParams } = new URL(req.url)
-  let index = searchParams.get('index')
+  let index = searchParams.get('id')
   const genre = searchParams.get('genre')
+  const action = searchParams.get('action')
+
   try{
     database()
     const count = await Song.countDocuments({ genre: { $in: [genre] }});
-    if(Number(index)>count) index="1"
-    if(Number(index)==0) index=String(count)
-    const query = { indexOfSong: String(index), genre: { $in: [genre] } };
-    let songs=await Song.find(query,'-_id')
-    return Response.json({ data: songs})
+    const query = { genre: { $in: [genre] } };
+    let songs=await Song.find(query)
+    let data=[]
+    for(let i=0;i<count;i++){
+      if(songs[i]._id==index){
+        action=="next"?data.push(songs[i+1]):data.push(songs[i-1])
+        break
+      }
+    }
+    if(!data[0])  action=="next"?data=[songs[0]]:data=[songs[count-1]]
+
+    return Response.json({ data: data})
   }
   catch (e:unknown){
     console.log({error:e})
