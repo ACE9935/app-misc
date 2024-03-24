@@ -6,6 +6,9 @@ import ArtistsSongs from "../components/ArtistsSongs";
 import RecommendedPlaylists from "../components/RecommendedPlaylists";
 import SimilarArtists from "../components/SimilarArtists";
 
+export const revalidate = 0;
+export const dynamic='force-dynamic'
+
 async function getData(artist: string) {
   try {
     const response = await fetch(`${process.env.HOST}/get-data-x/api?name=${artist}`);
