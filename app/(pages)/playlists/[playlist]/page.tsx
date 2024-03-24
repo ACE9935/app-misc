@@ -5,7 +5,8 @@ import PlaylistBanner from "../components/PlaylistBanner";
 import PlaylistSongs from "../components/PlaylistSongs";
 import RecommendedArtists from "../components/RecommendedArtists";
 
-export const dynamic = "force-dynamic"
+export const revalidate = 0;
+export const dynamic='force-dynamic'
 
 export async function generateMetadata(
   { params, searchParams }: {

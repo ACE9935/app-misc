@@ -1,5 +1,8 @@
-import { Artist, ArtistInterface, ISong, Playlist, Song } from "@/app/api/models";
+
 import SearchContainer from "./components/Container";
+
+export const revalidate = 0;
+export const dynamic='force-dynamic'
 
 export async function generateMetadata(
   { params, searchParams }: {
