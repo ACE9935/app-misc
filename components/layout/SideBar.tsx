@@ -35,7 +35,7 @@ const {data}=useSession()
   <div className='drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)] bg-white rounded-xl text-gray-700 flex flex-col p-4 gap-2 pb-[4rem]'>
     <div className='flex flex-col items-center relative pb-3'>
       {data?.user && <Link href='/profile'><div className='w-[50px] aspect-[1] mb-3 !bg-cover bg-center rounded-full shadow-xl' style={{background:`url('${data?.user.image}')`}}></div></Link>}
-     <p className='font-bold'>{data?.user.name}</p>
+     <p className='font-bold'>{data?.user.infos.name}</p>
      <p className='text-main text-sm'>{data?.user.email}</p>
     </div>
   <div className='pl-3 pb-3 text-xl font-bold text-black'>Browse</div>

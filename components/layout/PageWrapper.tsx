@@ -7,6 +7,8 @@ import SignInDialog from '../signIn/SignInDialog';
 import DeletePlaylistModel from '@/app/(pages)/profile/components/DeletePlaylistModel';
 import RenamePlaylistModel from '@/app/(pages)/profile/components/RenamePlaylistModel';
 import SearchModel from '../SearchModel';
+import DeleteUserModel from '@/app/(pages)/profile/components/DeleteUserModel';
+import RenameUserModel from '@/app/(pages)/profile/components/RenameUserModel';
 
 function PageWrapper({children}:{children:React.ReactNode}) {
     const [openDrawer,setOpenDrawer]=useState(false)
@@ -21,6 +23,8 @@ function PageWrapper({children}:{children:React.ReactNode}) {
       </div>
       </div>
       <SignInDialog/>
+      <RenameUserModel/>
+      <DeleteUserModel/>
       <AddToPlaylistModel/>
       <DeletePlaylistModel/>
       <RenamePlaylistModel/>

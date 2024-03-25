@@ -6,6 +6,8 @@ import { useSession } from 'next-auth/react';
 import CustomPlaylists from '../components/CustomPlaylists';
 import Link from 'next/link';
 import MiscLoader from '@/components/MiscLoader';
+import DeleteAccount from './DeleteAccount';
+import RenameUser from './RenameUser';
 
 function ProfileContainer() {
     const {data}=useSession()
@@ -14,14 +16,18 @@ function ProfileContainer() {
     const userInfos=data?.user.infos.info
     return ( <div className="p-3">
      <div className="bg-red-200 rounded-2xl p-3 py-6 flex-col sm:flex-row flex gap-8 items-center">
-      <img src={data?.user.image} className='w-[10rem] shadow-2xl rounded-full'/>
+      <img src={data?.user.image} className='w-[10rem] shadow-2xl rounded-full sm:self-start'/>
       <div className='gap-3 flex flex-col'>
         <h2 className='font-semibold text-slate-600 text-xl'>Profile</h2>
-        <h1 className='text-3xl sm:text-5xl font-bold break-all'>{data?.user.name}</h1>
+        <h1 className='text-3xl sm:text-5xl font-bold break-all'>{data?.user.infos.name}</h1>
         <div>
             <span className='font-semibold '>{`${userInfos?.playlists.length} playlists created / `}</span>
             <span className='font-semibold '>{`${userInfos?.favorites.length} titles liked / `}</span>
             <span className='font-semibold '>{`${userInfos?.favoriteArtists.length} artists liked`}</span>
+        </div>
+        <div className='flex gap-4 mt-5'>
+        <RenameUser/>
+        <DeleteAccount/>
         </div>
       </div>
      </div>

@@ -20,7 +20,7 @@ function SignInTab({page}:{page?:boolean}) {
   if(page && status=='loading') return <></>
     return ( 
         <>
-        {!model.showForm?<div className='p-4 xs:p-6 pt-4 sm:px-20 bg-white w-full flex flex-col gap-12 pb-14'>
+        {!model.showForm?<div className='!pb-12 p-4 xs:p-6 pt-4 sm:px-20 bg-white w-full flex flex-col gap-12'>
         <div className='flex justify-end sm:left-[50px] relative'>{!page?<IconButton onClick={()=>dispatch(close())}><CloseOutlined sx={{fontSize:30}}/></IconButton>:<IconButton onClick={()=>router.push('/')}><Home sx={{fontSize:30}}/></IconButton>}</div>
         <div className='flex flex-col gap-4 items-center'><h1 className='text-3xl sm:text-4xl flex items-center justify-center w-fit'><span>Sign in with</span><Logo className='text-xl sm:!text-2xl'/></h1>
         <p className='text-center text-lg'>Enhance your music journey! Sign in for exclusive features and personalized playlists. Unlock the full experience now!</p>
