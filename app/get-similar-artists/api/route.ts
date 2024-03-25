@@ -9,7 +9,7 @@ export async function GET(
   try{
     database()
     const artistInPage=await Artist.find({name:decodeURIComponent(name!)})
-    const docs = await Artist.find({ genre: { $in: artistInPage[0].genre } },{_id:0}).limit(7);
+    const docs = await Artist.find({ genre: { $in: artistInPage[0].genre[0] } },{_id:0}).limit(7);
     return Response.json(docs)
   }
   catch (e:unknown){
