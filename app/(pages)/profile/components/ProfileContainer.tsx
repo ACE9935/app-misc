@@ -27,7 +27,6 @@ function ProfileContainer() {
         </div>
         <div className='flex gap-4 mt-5'>
         <RenameUser/>
-        <DeleteAccount/>
         </div>
       </div>
      </div>
