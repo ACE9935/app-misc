@@ -15,6 +15,19 @@ export interface ISong {
   popular?:boolean
 }
 
+export interface NextUser {
+  _id:string;
+  name:string
+  email:string
+  image:string
+}
+
+const nextUserSchema = new Schema<NextUser>({
+  name: { type: String, required: true },
+  email: { type: String, required: true },
+  image: { type: String, required: true },
+});
+
 // 2. Create a Schema corresponding to the document interface.
 const songSchema = new Schema<ISong>({
   title: { type: String, required: true },
@@ -104,3 +117,4 @@ export const Appuser =mongoose.models.appuser || model<UserType>('appuser', user
 export const Song =mongoose.models.song || model<ISong>('song', songSchema);
 export const Artist =mongoose.models.artist || model<ArtistInterface>('artist', artistSchema);
 export const Playlist =mongoose.models.playlist || model<ISongPlaylist>('playlist', songPlaylistSchema);
+export const User =mongoose.models.user || model<NextUser>('user', nextUserSchema);
