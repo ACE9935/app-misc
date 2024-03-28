@@ -68,7 +68,7 @@ function SongPlayer() {
     return ( 
         <AudioPlayer
         customAdditionalControls={[
-        <div className="flex"><ShuffleButton disabled={song.customList.length==0 || song.customList.length<3}/>
+        <div className="flex" key={"audio-player"}><ShuffleButton disabled={song.customList.length==0 || song.customList.length<3}/>
         <LoopButton/></div>]}
         ref={player}
         volume={0.6}
