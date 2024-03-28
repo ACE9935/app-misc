@@ -30,7 +30,7 @@ async function getData(artist: string) {
         'Content-Type': 'application/json',
         // You may include additional headers like Authorization if needed
       },
-      body: JSON.stringify({ genres:res[0].genres }),
+      body: JSON.stringify({ genres:res[0]?res[0].genres:null }),
     });
 
     if (!response.ok) {
@@ -54,8 +54,8 @@ async function PlaylistPage({
     params: { playlist: string }
     searchParams: { [key: string]: string | string[] | undefined }
   }) {
-    const data:{playlist:ISongPlaylist[],songs:ISong[]} = await getData(params.playlist)
-    if(!data || !data.playlist.length || !data.songs.length) notFound()
+    const data:any = await getData(params.playlist)
+    if(!data || data.error || !data.playlist.length || !data.songs.length) notFound()
     return ( 
         <main className='min-w-0'>
       <div className='p-3 flex flex-col gap-4'>
