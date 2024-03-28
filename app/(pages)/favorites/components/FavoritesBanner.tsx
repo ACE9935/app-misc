@@ -21,7 +21,7 @@ function FavoritesBanner({lengthOfSongs}:{lengthOfSongs?:number}) {
             {data&&<h4 className="font-bold text-lg pt-3">{`${lengthx} titles`}</h4>}
             </div>
             <div className="flex gap-4 items-center">
-            {lengthx?<SignInBtnBasicFilled handleClick={()=>dispatch(playCustom({songs:data?.user.infos.info?.favorites,index:0}))}>Listen now</SignInBtnBasicFilled>:<Link href="/"><SignInBtnBasicFilled handleClick={()=>0}>Go back home</SignInBtnBasicFilled></Link>}
+            {lengthx?<SignInBtnBasicFilled handleClick={()=>dispatch(playCustom({songs:data?.user.infos.info?.favorites,_id:data?.user.infos.info?.favorites[0]._id}))}>Listen now</SignInBtnBasicFilled>:<Link href="/"><SignInBtnBasicFilled handleClick={()=>0}>Go back home</SignInBtnBasicFilled></Link>}
             </div>
             </motion.div>
         </div>
