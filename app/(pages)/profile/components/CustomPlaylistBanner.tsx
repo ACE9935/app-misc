@@ -25,7 +25,7 @@ function CustomPlaylistBanner({playlist}:{playlist:userPlaylist}) {
             <h4 className="font-bold text-lg pt-3">{`${playlist.songs.length} titles`}</h4>
             </div>
             <div className="flex gap-1 items-center">
-            <div className="pr-3">{playlist.songs.length?<SignInBtnBasicFilled handleClick={()=>dispatch(playCustom({songs:playlist.songs,index:0}))}>Listen now</SignInBtnBasicFilled>:<Link href="/profile"><SignInBtnBasicFilled handleClick={()=>0}>Go to profile</SignInBtnBasicFilled></Link>}</div>
+            <div className="pr-3">{playlist.songs.length?<SignInBtnBasicFilled handleClick={()=>dispatch(playCustom({songs:playlist.songs,_id:playlist.songs[0]._id}))}>Listen now</SignInBtnBasicFilled>:<Link href="/profile"><SignInBtnBasicFilled handleClick={()=>0}>Go to profile</SignInBtnBasicFilled></Link>}</div>
             <RenamePlaylist id={playlist._id} name={playlist.name!}/>
             <DeletePlaylist id={playlist._id}/>
             </div>
