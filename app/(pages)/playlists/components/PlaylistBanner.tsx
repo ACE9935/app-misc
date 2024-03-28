@@ -1,9 +1,9 @@
 'use client'
-import {ISongPlaylist } from "@/app/api/models";
+import {ISong, ISongPlaylist } from "@/app/api/models";
 import SignInBtnBasic from "@/components/signIn/SignInBtnBasic";
 import { motion } from "framer-motion";
 import { useAppDispatch } from "@/app-state/app-hooks";
-import { nextSongBasedOnPlaylist } from "@/app-state/app-state";
+import { nextSongBasedOnPlaylist, playCustom } from "@/app-state/app-state";
 import SignInBtnBasicFilled from "@/components/signIn/SignInBtnBasicFilled";
 
 const Animation={
@@ -13,7 +13,7 @@ const Animation={
  }
 
 
-function PlaylistBanner({data}:{data:ISongPlaylist}) {
+function PlaylistBanner({data,songs}:{data:ISongPlaylist,songs:ISong[]}) {
     const dispatch=useAppDispatch()
     return ( 
         <div className="rounded-xl p-6 px-8 bg-red-200 flex gap-4 flex-col sm:flex-row-reverse justify-between items-start">
@@ -24,7 +24,7 @@ function PlaylistBanner({data}:{data:ISongPlaylist}) {
             <h1 className="font-bold text-5xl sm:text-7xl">{data.name}</h1>
             </div>
             <div className="flex gap-4 items-center">
-            <SignInBtnBasicFilled handleClick={()=>dispatch(nextSongBasedOnPlaylist({indexS:0,genre:data.genres}))}>Listen now</SignInBtnBasicFilled>
+            <SignInBtnBasicFilled handleClick={()=>dispatch(playCustom({songs:songs,index:0,_id:songs[0]._id}))}>Listen now</SignInBtnBasicFilled>
             </div>
             </motion.div>
         </div>

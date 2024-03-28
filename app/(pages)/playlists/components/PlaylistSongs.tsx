@@ -33,7 +33,7 @@ const fetchSongs = async ({ pageParam=1,genre }: any) => {
 };
 
 
-function PlaylistSongs({genre}:{genre:string[]}) {
+function PlaylistSongs({genre,songs}:{genre:string[],songs:ISong[]}) {
  
    const {
      data,
@@ -60,7 +60,7 @@ function PlaylistSongs({genre}:{genre:string[]}) {
            {data?data?.pages?.map((o,i:number)=>
            o.data.map((o:ISong,j:number) => (
             <div key={i+j}>
-            <SongPlayerBasic playlistPlay={genre} songIndex={i*5+j} songObject={o}/>
+            <SongPlayerBasic key={i*5+j} songIndex={i*5+j} songObject={o} customPlaylist={songs}/>
             </div>
           ))
            ):<></>}

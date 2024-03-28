@@ -14,9 +14,7 @@ function SongPlayerBasic({songObject,albumPlay,playlistPlay,songIndex,customPlay
     return ( 
     <div 
     onClick={()=>{
-    if(customPlaylist) dispatch(playCustom({songs:customPlaylist,index:songIndex}))
-    else if(albumPlay) dispatch(nextSongBasedOnArtist({indexS:songIndex!,artist:songObject.artistName!}))
-    else if(playlistPlay) dispatch(nextSongBasedOnPlaylist({indexS:songIndex!,genre:playlistPlay!}))
+    if(customPlaylist) dispatch(playCustom({songs:customPlaylist,_id:songObject._id}))
     else dispatch(play({...songObject}))
 }}
     {...(song.title==songObject.title?{

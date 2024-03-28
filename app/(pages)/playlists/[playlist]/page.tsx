@@ -1,5 +1,5 @@
 
-import { ISongPlaylist } from "@/app/api/models";
+import { ISong, ISongPlaylist } from "@/app/api/models";
 import { notFound } from "next/navigation";
 import PlaylistBanner from "../components/PlaylistBanner";
 import PlaylistSongs from "../components/PlaylistSongs";
@@ -23,16 +23,25 @@ export async function generateMetadata(
 async function getData(artist: string) {
   try {
     const response = await fetch(`${process.env.HOST}/get-single-playlist/api?name=${artist}`);
+    const res:ISongPlaylist[]=await response.json()
+    const songs=await fetch(`${process.env.HOST}/get-all-playlists-songs/api`,{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        // You may include additional headers like Authorization if needed
+      },
+      body: JSON.stringify({ genres:res[0].genres }),
+    });
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
-
-    return response.json();
+    const songsx:ISong[]=await songs.json()
+    return {playlist:res,songs:songsx};
   } catch (error) {
     // Handle errors here, you can log them or throw a custom error
-    console.error('Error in addFavoriteSong:', error);
-    throw new Error('Failed to add song to favorites');
+    console.error('Error:', error);
+    throw new Error('Failed to fetch data');
   }
 }
 
@@ -45,14 +54,14 @@ async function PlaylistPage({
     params: { playlist: string }
     searchParams: { [key: string]: string | string[] | undefined }
   }) {
-    const data:ISongPlaylist[] = await getData(params.playlist)
-    if(!data || !data.length) notFound()
+    const data:{playlist:ISongPlaylist[],songs:ISong[]} = await getData(params.playlist)
+    if(!data || !data.playlist.length || !data.songs.length) notFound()
     return ( 
         <main className='min-w-0'>
       <div className='p-3 flex flex-col gap-4'>
-        <PlaylistBanner data={data[0]}/>
-        <PlaylistSongs genre={data[0].genres}/>
-        <RecommendedArtists name={data[0].name!}/>
+        <PlaylistBanner data={data.playlist[0]} songs={data.songs}/>
+        <PlaylistSongs genre={data.playlist[0].genres} songs={data.songs}/>
+        <RecommendedArtists name={data.playlist[0].name!}/>
         </div>
    </main>
      );

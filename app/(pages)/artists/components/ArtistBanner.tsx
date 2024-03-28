@@ -1,10 +1,9 @@
 'use client'
-import { ArtistInterface } from "@/app/api/models";
-import SignInBtnBasic from "@/components/signIn/SignInBtnBasic";
+import { ArtistInterface, ISong } from "@/app/api/models";
 import { motion } from "framer-motion";
 import AddFavouriteArtist from "./AddFavoriteArtist";
 import { useAppDispatch } from "@/app-state/app-hooks";
-import { nextSongBasedOnArtist } from "@/app-state/app-state";
+import { playCustom } from "@/app-state/app-state";
 import SignInBtnBasicFilled from "@/components/signIn/SignInBtnBasicFilled";
 
 export const Animation={
@@ -14,7 +13,7 @@ export const Animation={
  }
 
 
-function ArtistBanner({data}:{data:ArtistInterface}) {
+function ArtistBanner({data,songs}:{data:ArtistInterface,songs:ISong[]}) {
     const dispatch=useAppDispatch()
     return ( 
         <div className="rounded-xl p-6 px-8 bg-red-200 flex gap-4 flex-col sm:flex-row-reverse justify-between">
@@ -27,7 +26,7 @@ function ArtistBanner({data}:{data:ArtistInterface}) {
             <h1 className="font-bold text-5xl sm:text-7xl">{data.name}</h1>
             </div>
             <div className="flex gap-4 items-center">
-            <SignInBtnBasicFilled handleClick={()=>dispatch(nextSongBasedOnArtist({indexS:0,artist:data.name}))}>Listen now</SignInBtnBasicFilled>
+            <SignInBtnBasicFilled handleClick={()=>dispatch(playCustom({songs:songs,index:0,_id:songs[0]._id}))}>Listen now</SignInBtnBasicFilled>
             <AddFavouriteArtist artist={data}/>
             </div>
             </motion.div>

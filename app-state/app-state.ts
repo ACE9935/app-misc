@@ -2,8 +2,32 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import type {RootState} from './app-store'
 import { ISong } from '@/app/api/models'
 
+function shuffleArray(array:any[]) {
+  // Create a copy of the original array to avoid modifying it directly
+  const shuffledArray = array.slice();
+  
+  // Fisher-Yates (Knuth) Shuffle Algorithm
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+  }
+  
+  return shuffledArray;
+}
+
+function findIndexByField<T>(array: T[], field: keyof T, value: T[keyof T]): number {
+  for (let i = 0; i < array.length; i++) {
+      if (array[i][field] === value) {
+          return i; // Return the index if found
+      }
+  }
+  return -1; // Return -1 if not found
+}
+
 // Define a type for the slice state
 export interface SongState extends ISong {
+  randomSongs:ISong[]
+  randomPlay:boolean,
   playing: boolean
   paused:boolean
   playingArtistAlbum?:boolean
@@ -11,24 +35,20 @@ export interface SongState extends ISong {
   customList:ISong[]
   playingPlaylist?:boolean
   playlisGenres?:string[]
-  indexOfSongInAlbum?:number|null,
-  indexOfSongInPlaylist?:number|null,
-  indexOfCustom?:number|null,
 }
 
 // Define the initial state using that type
 const initialState: SongState = {
   _id:"",
+  randomPlay:false,
+  randomSongs:[],
   playing: false,
   customList:[],
   playlisGenres:[],
   playingArtistAlbum:false,
   playingPlaylist:false,
   playingCustom:false,
-  indexOfSongInPlaylist:null,
-  indexOfSongInAlbum:null,
   paused:false,
-  indexOfSong:'0',
   title:null,
   artist:null,
   duration:null,
@@ -111,9 +131,9 @@ export const nextSongBasedOnPlaylist = createAsyncThunk(
 );
 
 const playStates={
+  randomSongs:[],
+  randomPlay:false,
   playing:true,
-  playingArtistAlbum:false,
-  playingPlaylist:false,
   playingCustom:false,
   customList:[],
 }
@@ -124,12 +144,28 @@ export const songSlice = createSlice({
   reducers: {
     pause: (state):SongState=>({...state,paused:true}),
     resume: (state):SongState=>({...state,paused:false}),
+    setShuffle: (state,action):SongState=>({...state,randomPlay:action.payload}),
     setCustom: (state,action):SongState=>({...state,...playStates,playingCustom:true,customList:action.payload}),
+
     playCustom: (state,action):SongState=>{
-      const {songs:songss,index:indexs}=action.payload
-      const definiteIndex=indexs<0?songss.length-1:indexs>songss.length-1?0:indexs
-      return ({...action.payload.songs[definiteIndex],paused:state.paused,...playStates,playingCustom:true,indexOfCustom:definiteIndex,customList:action.payload.songs})
+      const {songs:songss,controlled:controlled,action:actionx,_id:id}=action.payload
+      
+      let arr=state.randomSongs
+      let definiteAbsoluteIndex=findIndexByField(songss,'_id',id)
+      definiteAbsoluteIndex=actionx=="next"?definiteAbsoluteIndex+1:actionx=="prev"?definiteAbsoluteIndex-1:definiteAbsoluteIndex
+      definiteAbsoluteIndex=definiteAbsoluteIndex<0?songss.length-1:definiteAbsoluteIndex>songss.length-1?0:definiteAbsoluteIndex
+      if(JSON.stringify(state.customList) !== JSON.stringify(songss) || !arr || !arr.length) arr=shuffleArray(songss)
+          
+      if(state.randomPlay && controlled){
+      let prevIndexInRandom=findIndexByField(arr,'_id',state._id)
+        prevIndexInRandom=actionx=="next"?prevIndexInRandom+1:prevIndexInRandom-1
+        const definiteAlternativeIndex=prevIndexInRandom<0?songss.length-1:prevIndexInRandom>songss.length-1?0:prevIndexInRandom
+        return ({...arr[definiteAlternativeIndex],paused:state.paused,...playStates,playingCustom:true,randomPlay:true,randomSongs:arr,customList:songss})
+      }
+      else if(state.randomPlay && arr) return ({...songss[definiteAbsoluteIndex],paused:state.paused,...playStates,playingCustom:true,customList:songss,randomSongs:arr,randomPlay:true})
+      else return ({...songss[definiteAbsoluteIndex],paused:state.paused,...playStates,playingCustom:true,customList:songss,randomSongs:arr})
     },
+
     play: (state,action):SongState=>({...action.payload,paused:state.paused,...playStates}),
     playAlbum: (state,action):SongState=>({...action.payload,paused:state.paused,...playStates,playingArtistAlbum:true}),
     playPlaylist: (state,action):SongState=>({...action.payload,paused:state.paused,...playStates,playingArtistAlbum:true}),
@@ -140,7 +176,7 @@ export const songSlice = createSlice({
         return state
     }).addCase(nextSong.fulfilled,(state,action)=>{
        if(action.payload.data.length==0) return initialState
-         return {...action.payload.data[0],playing:true}
+         return {...action.payload.data[0],...playStates,playing:true}
     }).addCase(nextSong.rejected,(state,action)=>{
         return state
     })
@@ -163,7 +199,7 @@ export const songSlice = createSlice({
 }})
 
 
-export const { play,stop,pause,resume,playCustom,setCustom } = songSlice.actions
+export const { play,stop,pause,resume,playCustom,setCustom,setShuffle } = songSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectSong = (state: RootState) => state.song
