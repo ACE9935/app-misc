@@ -7,7 +7,7 @@ function InfosPage() {
          <section className="flex flex-col gap-2">
             <MiscTitle>About Us:</MiscTitle>
             <div>
-            Welcome to Misc, I made this project for fun, the signin method using email adress is not working unfortunatly
+            Welcome to Misc, I made this project for fun!
             </div>
          </section>
 
