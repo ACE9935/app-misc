@@ -18,7 +18,7 @@ export default function MagicLinkEmail({ url, host }:{url:string,host:string}) {
       <Preview>Log in with this magic link</Preview>
       <Body style={main}>
         <Container style={container}>
-          <Heading style={h1}>Log in to {host}</Heading>
+          <Heading style={h1}>Log in to Misc</Heading>
 
           <Link
             href={url}
