@@ -45,11 +45,11 @@ export default function MagicLinkEmail({ url, host }:{url:string,host:string}) {
 
           <Text style={footer}>
             <Link
-              href='https://hamedbahram.io'
+              href='https://misc-app.vercel.app/'
               target='_blank'
               style={{ ...link, color: '#898989' }}
             >
-              hamedbahram.io
+              misc-app.vercel
             </Link>
           </Text>
         </Container>
