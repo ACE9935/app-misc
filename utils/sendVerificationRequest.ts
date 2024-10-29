@@ -10,7 +10,7 @@ export async function sendVerificationRequest(params: { identifier: any; url: an
 
   try {
     const data = await resend.emails.send({
-      from: '',
+      from: 'Misc <noreply@trueflowing.com>',
       to: [identifier],
       subject: `Log in to ${host}`,
       text: text({ url, host }),
