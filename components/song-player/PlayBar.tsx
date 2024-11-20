@@ -36,7 +36,6 @@ function PlayBar() {
  useEffect(() => { refetch() }, [song.title,refetch])
 
     return ( 
-       <Draggable>
         <Snackbar
          open={song.playing}
          className="active:cursor-grabbing"
@@ -60,7 +59,6 @@ function PlayBar() {
           <SongPlayer/>
             </div>
         </Snackbar>
-        </Draggable>
      );
 }
 
