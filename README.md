@@ -1,8 +1,59 @@
+# Misc 🎧
+
+**Misc** is a modern music streaming app built with **Next.js** and **React**, hosted on **Vercel**. It features a curated library of **75 songs** spanning across **5 genres**: Rock, EDM, Hip Hop, Pop, and Jazz.
+
+All media assets — audio files and images — are stored in **Firebase Cloud Storage**. Metadata for each song (title, artist, duration, and album) is stored in **MongoDB**.
+
+---
+
+## 🚀 Features
+
+### 🎵 Song Library
+- 75 high-quality songs
+- Genres: Rock, EDM, Hip Hop, Pop, Jazz
+- Songs include metadata: `title`, `artist`, `duration`, and `album`
+- Media files stored in Firebase Cloud Storage
+
+### 🔍 Search & Artist Pages
+- Search songs by artist name
+- Each artist has a dedicated page listing all their songs
+
+### 🔐 Authentication (NextAuth)
+- Sign in via **Google**
+- Or via **Email verification link**
+- Authenticated users can:
+  - Save songs as favorites
+  - Add artists to their favorite list
+  - Create custom playlists
+
+### 🎧 Song Player
+- Built using [`react-h5-audio-player`](https://github.com/lhz516/react-h5-audio-player)
+- Options:
+  - Loop current song
+  - Auto-play a **random** next song
+  - If a song is played from the homepage, the next/random song will be from the **same genre**
+
+---
+
+## 🧑‍💻 Tech Stack
+
+- **Frontend**: React, Next.js, MUI, Tailwind
+- **Sate Management**: Redux Toolkit
+- **Authentication**: NextAuth.js
+- **Storage**: Firebase Cloud Storage
+- **Database**: MongoDB (for metadata)
+- **Audio Player**: react-h5-audio-player
+- **Deployment**: Vercel
+
+---
+
+## 🛠 Getting Started
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+### Development Server
 
-First, run the development server:
+Run the development server:
 
 ```bash
 npm run dev
@@ -12,25 +63,4 @@ yarn dev
 pnpm dev
 # or
 bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
