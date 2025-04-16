@@ -1,6 +1,6 @@
 # Misc 🎧
 
-**Misc** is a modern music streaming app built with **Next.js** and **React**, hosted on **Vercel**. It features a curated library of **75 songs** spanning across **5 genres**: Rock, EDM, Hip Hop, Pop, and Jazz.
+**Misc** is a modern music streaming app built with **Next.js** and **React**, hosted on **Vercel**. It features a curated library of **80 songs** spanning across **5 genres**: Rock, EDM, Hip Hop, Pop, and Jazz.
 
 All media assets — audio files and images — are stored in **Firebase Cloud Storage**. Metadata for each song (title, artist, duration, and album) is stored in **MongoDB**.
 
